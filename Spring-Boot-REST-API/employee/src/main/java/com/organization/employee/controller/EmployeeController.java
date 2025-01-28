@@ -4,10 +4,12 @@ import com.organization.employee.dto.EmployeeDTO;
 import com.organization.employee.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -25,19 +27,22 @@ public class EmployeeController {
     @GetMapping
     public ResponseEntity<List<EmployeeDTO>> getAllEmployees() {
         List<EmployeeDTO> employees = employeeService.getAllEmployees();
-        return ResponseEntity.ok(employees);
+        CacheControl cacheControl = CacheControl.noCache();
+        return ResponseEntity.ok().cacheControl(cacheControl).body(employees);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable Long id) {
         EmployeeDTO employee = employeeService.getEmployeeById(id);
-        return employee != null ? ResponseEntity.ok(employee) : ResponseEntity.notFound().build();
+        CacheControl cacheControl = CacheControl.noCache();
+        return employee != null ? ResponseEntity.ok().cacheControl(cacheControl).body(employee) : ResponseEntity.notFound().build();
     }
 
     @GetMapping("/email/{email}")
     public ResponseEntity<EmployeeDTO> getEmployeeByEmail(@PathVariable String email) {
         EmployeeDTO employee = employeeService.getEmployeeByEmail(email);
-        return employee != null ? ResponseEntity.ok(employee) : ResponseEntity.notFound().build();
+        CacheControl cacheControl = CacheControl.noCache();
+        return employee != null ? ResponseEntity.ok().cacheControl(cacheControl).body(employee) : ResponseEntity.notFound().build();
     }
 
     @PutMapping("/{id}")
