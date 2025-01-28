@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5 col-8">
+    <h2>Employee Details</h2>
+    <div>
+        <button type="button" class="btn btn-primary" onclick="navigateToFormPage()" style="margin-bottom: 10px">Back to Add Employee</button>
+    </div>
+    <div class="mb-3">
+        <input type="text" class="form-control" id="searchInput" placeholder="Search by name or email" onkeyup="getAllEmployees()">
+    </div>
+    <div class="table-section">
+        <table class="table table-bordered border-primary table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">EmpID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Mobile Number</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody id="empTable">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/employee.js"></script>
+<script>
+    function navigateToFormPage() {
+        window.location.href = 'form.html';
+    }
+</script>
+</body>
+</html>
